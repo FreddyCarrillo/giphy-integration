@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { Search } from "./Search";
 import { GiftGrid } from "./GiftGrid";
+import { Categories } from "./Categories";
 
 export const GiftExpertApp = () => {
 
   const [categories, setCategories] = useState([]);
 
-  const onAddCategory = (category) => {
-    if( categories.includes(category) ) return;
+  const onAddCategory = (nameCategory) => {
+    if( categories.includes(nameCategory) ) return;
     setCategories([
-      category,
+      nameCategory,
       ...categories
     ]);
   }
@@ -22,14 +23,7 @@ export const GiftExpertApp = () => {
 
       <Search onAddCategory={onAddCategory}/>
 
-      {
-        categories.map((category)=>(
-          <GiftGrid 
-            key={category}
-            category={category}
-          />
-        ))
-      }
+      <Categories categories={categories} />
 
     </div>
   )
